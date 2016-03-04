@@ -1,0 +1,73 @@
+######################################
+## 4gekkman/docker-nginx_phpfpm-dev ##
+######################################
+## Оглавление
+##  
+##  1. Базовый образ и разработчики
+##  2. Подавить сообщения error/warning от upstart
+##  3. Дать контейнеру знать об отсутствии tty
+##  4. Установить необходимые пакеты
+##  5. Создать следующие каталоги, если они отсутствуют
+##  6. Добавить конфиг для nginx из контекста сборки
+##  7. Добавить конфиг для supervisor из контекста сборки
+##  8. Удалить старый конфиг nginx из контекста сборки
+##  9. Назначить cmd по умолчанию, запускающую supervisord
+##
+
+# 1. Базовый образ и разработчики
+FROM ubuntu:16.04
+MAINTAINER German Manvelov <4gekkman@gmail.com>
+
+# 2. Подавить сообщения error/warning от upstart
+RUN dpkg-divert --local --rename --add /sbin/initctl
+RUN ln -sf /bin/true /sbin/initctl
+
+# 3. Дать контейнеру знать об отсутствии tty
+ENV DEBIAN_FRONTEND noninteractive
+
+# 4. Затереть скрипт /usr/sbin/policy-rc.d
+# - Это позволит избежать появления ошибки: invoke-rc.d: policy-rc.d denied execution of start
+# - Подробнее см.здесь: https://habrahabr.ru/post/247903/
+RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
+
+# 5. Обновить все присутствующие пакеты
+RUN apt-get update && apt-get -y upgrade
+
+# 6. Установить необходимые пакеты
+RUN apt-get update && \
+
+    apt-get install -y supervisor && \
+    apt-get install -y nginx && \
+    apt-get install -y php7.0-fpm && \
+    apt-get install -y git && \
+    apt-get install -y php7.0-mysql && \
+    apt-get install -y php7.0-curl && \
+    apt-get install -y php7.0-gd && \
+    apt-get install -y php7.0-intl && \
+    apt-get install -y php7.0-mcrypt && \
+    apt-get install -y php7.0-sqlite && \
+    apt-get install -y php7.0-tidy && \
+    apt-get install -y php7.0-xmlrpc && \
+    apt-get install -y php7.0-xsl && \
+    apt-get install -y php7.0-pgsql && \
+    apt-get install -y php7.0-ldap && \
+    apt-get install -y pwgen
+
+# 7. Создать следующие каталоги, если они отсутствуют
+RUN mkdir -p /etc/nginx
+RUN mkdir -p /var/log/supervisor
+RUN mkdir -p /var/run/php-fpm
+
+# 8. Удалить старый конфиг nginx из контекста сборки
+# - А добавляться конфиг будет в compose-проекте
+RUN rm /etc/nginx/nginx.conf
+
+# 9. Добавить конфиг для supervisor из контекста сборки
+ADD nginx-supervisor.ini /etc/supervisor.d/nginx-supervisor.ini
+
+# 10. Сделать expose портов 80 и 443
+EXPOSE 80
+EXPOSE 443
+
+# 11. Назначить cmd по умолчанию, запускающую supervisord
+CMD ["/usr/bin/supervisord"]
