@@ -70,4 +70,4 @@ EXPOSE 80
 EXPOSE 443
 
 # 11. Назначить cmd по умолчанию, запускающую supervisord
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.d/nginx-supervisor.ini"]
