@@ -36,6 +36,7 @@ RUN apt-get update && apt-get -y upgrade
 # 6. Установить необходимые пакеты
 RUN apt-get update && apt-get install -y \
 
+    curl \
     supervisor \
     nginx \
     php7.0-fpm \
@@ -51,8 +52,7 @@ RUN apt-get update && apt-get install -y \
     php7.0-xsl \
     php7.0-pgsql \
     php7.0-ldap \
-    pwgen \
-    curl
+    pwgen
 
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
@@ -74,5 +74,5 @@ EXPOSE 443
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.d/nginx-supervisor.ini"]
 
 # 12. Установить composer
-RUN curl -sS https://getcomposer.org/installer | php --install-dir=/usr/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
