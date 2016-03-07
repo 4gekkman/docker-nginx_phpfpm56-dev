@@ -36,22 +36,22 @@ RUN apt-get update && apt-get -y upgrade
 # 6. Установить необходимые пакеты
 RUN apt-get update && apt-get install -y \
 
-    supervisor && \
-    nginx && \
-    php7.0-fpm && \
-    git && \
-    php7.0-mysql && \
-    php7.0-curl && \
-    php7.0-gd && \
-    php7.0-intl && \
-    php7.0-mcrypt && \
-    php7.0-sqlite && \
-    php7.0-tidy && \
-    php7.0-xmlrpc && \
-    php7.0-xsl && \
-    php7.0-pgsql && \
-    php7.0-ldap && \
-    pwgen && \
+    supervisor \
+    nginx \
+    php7.0-fpm \
+    git \
+    php7.0-mysql \
+    php7.0-curl \
+    php7.0-gd \
+    php7.0-intl \
+    php7.0-mcrypt \
+    php7.0-sqlite \
+    php7.0-tidy \
+    php7.0-xmlrpc \
+    php7.0-xsl \
+    php7.0-pgsql \
+    php7.0-ldap \
+    pwgen \
     curl
 
 # 7. Создать следующие каталоги, если они отсутствуют
