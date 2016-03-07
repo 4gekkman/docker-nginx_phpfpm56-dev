@@ -74,6 +74,6 @@ EXPOSE 443
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.d/nginx-supervisor.ini"]
 
 # 12. Установить composer
-RUN curl -sS https://getcomposer.org/installer | php --install-dir=/usr/bin --filename=composer && \
-    composer self-update
+RUN curl -sS https://getcomposer.org/installer | php --install-dir=/usr/bin --filename=composer
+RUN composer self-update
 
