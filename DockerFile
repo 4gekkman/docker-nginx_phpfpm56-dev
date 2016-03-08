@@ -69,7 +69,7 @@ RUN rm /etc/nginx/nginx.conf
 RUN rm /etc/php/7.0/fpm/php.ini
 
 # 9. Добавить конфиг для supervisor из контекста сборки
-ADD nginx-supervisor.ini /etc/supervisor.d/nginx-supervisor.ini
+# ADD nginx-supervisor.ini /etc/supervisor.d/nginx-supervisor.ini
 
 # 10. Сделать expose портов 80 и 443
 EXPOSE 80
