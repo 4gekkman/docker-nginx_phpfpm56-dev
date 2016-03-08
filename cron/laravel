@@ -1,0 +1,4 @@
+* * * * * root php /c/WebDev/projects/devapp/project/artisan schedule:run >> /dev/null
+
+
+
