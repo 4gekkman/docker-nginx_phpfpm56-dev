@@ -80,3 +80,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
 # 12. Скопировать /etc/cron.d задачи для cron
 COPY ./cron/laravel /etc/cron.d/laravel
+
