@@ -44,6 +44,7 @@ RUN apt-get update && apt-get install -y \
     supervisor \
     nginx \
     php7.0-fpm \
+      php7.0-gmp \
     git \
     php7.0-mysql \
     php7.0-curl \
