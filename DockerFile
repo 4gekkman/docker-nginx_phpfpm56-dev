@@ -56,7 +56,8 @@ RUN apt-get update && apt-get install -y \
     php7.0-xsl \
     php7.0-pgsql \
     php7.0-ldap \
-    pwgen
+    pwgen \ 
+    sshpass
 
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
