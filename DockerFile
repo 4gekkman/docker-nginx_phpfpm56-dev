@@ -58,8 +58,7 @@ RUN apt-get update && apt-get install -y \
     php7.0-ldap \
     pwgen \ 
     sshpass \ 
-    git-all \
-    mailutils
+    git-all
 
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
