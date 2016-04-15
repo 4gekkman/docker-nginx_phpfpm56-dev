@@ -98,7 +98,7 @@ ADD bootstrap.sh /opt/bootstrap.sh
 RUN chmod +x /opt/bootstrap.sh
 
 # 11. Назначить cmd по умолчанию
-CMD /opt/bootstrap.sh;/usr/bin/supervisord -c /etc/supervisor.d/supervisor.ini
+CMD /opt/bootstrap.sh; export TERM=xterm; /usr/bin/supervisord -c /etc/supervisor.d/supervisor.ini
 
 # 12. Установить composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
