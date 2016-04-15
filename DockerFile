@@ -12,9 +12,11 @@
 ##  7. Создать следующие каталоги, если они отсутствуют
 ##  8. Удалить конфиги nginx и php
 ##  9. Сделать expose портов 80 и 443
-##  10. Назначить cmd по умолчанию, запускающую supervisord
+##  10. Назначить cmd по умолчанию
 ##  11. Установить composer
 ##  12. Скопировать /etc/cron.d задачи для cron
+##  13. Подготовить ведение логов для postfix
+##  14. Добавить скрипт entrypoint.sh в образ
 ##
 
 # 1. Базовый образ и разработчики
@@ -83,9 +85,16 @@ RUN rm /etc/php/7.0/fpm/php.ini
 # 9. Сделать expose портов 80 и 443
 EXPOSE 80
 EXPOSE 443
+EXPOSE 25
+EXPOSE 587
+EXPOSE 465
+EXPOSE 993
+EXPOSE 143
+EXPOSE 110
+EXPOSE 995
 
-# 10. Назначить cmd по умолчанию, запускающую supervisord
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.d/supervisor.ini"]
+# 10. Назначить cmd по умолчанию
+CMD ["/opt/entrypoint.sh"]
 
 # 11. Установить composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
@@ -103,15 +112,7 @@ COPY ./cron/laravel /etc/cron.d/laravel
   #       syslog-ng: Error setting capabilities, capability management disabled; error='Operation not permitted'
   #       http://serverfault.com/questions/524518/error-setting-capabilities-capability-management-disabled#
   RUN	sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
-
-# 14. Подготовить стартовый скрипт для postfix
-RUN cat >> /usr/bin/startpostfix.sh <<EOF \
-#!/bin/bash \
-cp -rf /etc/resolv.conf /var/spool/postfix/etc/resolv.conf \
-/usr/sbin/postfix -c /etc/postfix start \
-EOF \
-chmod +x /usr/bin/startpostfix.sh 
   
-# 15. Подготовить nano к работе
-RUN export TERM=xterm
+# 14. Добавить скрипт entrypoint.sh в образ
+ADD entrypoint.sh /opt/entrypoint.sh
 
