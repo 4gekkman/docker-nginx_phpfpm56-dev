@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y \
     pwgen \ 
     sshpass \ 
     git-all \
-    mailutils 
+    mailutils \
     ; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
