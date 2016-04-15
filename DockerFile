@@ -61,7 +61,8 @@ RUN apt-get update && apt-get install -y \
     sshpass \ 
     git-all \
     mailutils 
-
+    ; exit 0
+    
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
 RUN mkdir -p /var/log/supervisor
