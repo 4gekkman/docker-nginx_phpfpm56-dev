@@ -59,8 +59,9 @@ RUN apt-get update && apt-get install -y \
     pwgen \ 
     sshpass \ 
     git-all \
+    syslog-ng \
+    syslog-ng-core \    
     mailutils \
-    syslog-ng
 
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
