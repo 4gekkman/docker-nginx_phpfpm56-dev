@@ -61,7 +61,7 @@ RUN apt-get update && apt-get install -y \
     git-all \
     syslog-ng \
     syslog-ng-core \    
-    mailutils \
+    mailutils
 
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
