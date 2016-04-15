@@ -6,9 +6,4 @@
   # 2. Подготовить nano к работе
   export TERM=xterm
 
-  # 3. Запустить supervisor
-  /usr/bin/supervisord -c /etc/supervisor.d/supervisor.ini
-
-
-
 
