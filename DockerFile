@@ -104,6 +104,14 @@ COPY ./cron/laravel /etc/cron.d/laravel
   #       http://serverfault.com/questions/524518/error-setting-capabilities-capability-management-disabled#
   RUN	sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
 
-# 14. Подготовить nano к работе
+# 14. Подготовить стартовый скрипт для postfix
+cat >> /usr/bin/startpostfix.sh <<EOF
+#!/bin/bash
+cp -rf /etc/resolv.conf /var/spool/postfix/etc/resolv.conf
+/usr/sbin/postfix -c /etc/postfix start
+EOF
+chmod +x /usr/bin/startpostfix.sh
+  
+# 15. Подготовить nano к работе
 RUN export TERM=xterm
 
