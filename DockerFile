@@ -37,32 +37,38 @@ RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d
 RUN apt-get update && apt-get -y upgrade
 
 # 6. Установить необходимые пакеты
-RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
-RUN apt-get update && apt-get install -y \
 
-    curl \
-    cron \
-    supervisor \
-    nginx \
-    php7.0 php7.0-fpm php7.0-gmp php7.0-mbstring php7.0-zip \
-    git \
-    php7.0-mysql \
-    php7.0-curl \
-    php7.0-gd \
-    php7.0-intl \
-    php7.0-mcrypt \
-    php7.0-sqlite \
-    php7.0-tidy \
-    php7.0-xmlrpc \
-    php7.0-xsl \
-    php7.0-pgsql \
-    php7.0-ldap \
-    pwgen \ 
-    sshpass \ 
-    git-all \
-    mailutils \
-    nano \
-    ; exit 0
+  # 6.1. Если нужен лог для postfix, раскомментируй и пересобери этот образ
+  # - Внимание! Этот лог может стать огромным со временем, применяй лишь для отладки.
+  # - Лог будет находиться в other/logs/mail.log
+  RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
+
+  # 6.2. Установить пакеты
+  RUN apt-get update && apt-get install -y \
+
+      curl \
+      cron \
+      supervisor \
+      nginx \
+      php7.0 php7.0-fpm php7.0-gmp php7.0-mbstring php7.0-zip \
+      git \
+      php7.0-mysql \
+      php7.0-curl \
+      php7.0-gd \
+      php7.0-intl \
+      php7.0-mcrypt \
+      php7.0-sqlite \
+      php7.0-tidy \
+      php7.0-xmlrpc \
+      php7.0-xsl \
+      php7.0-pgsql \
+      php7.0-ldap \
+      pwgen \ 
+      sshpass \ 
+      git-all \
+      mailutils \
+      nano \
+      ; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
