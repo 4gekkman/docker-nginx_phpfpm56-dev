@@ -104,7 +104,7 @@ CMD /opt/bootstrap.sh; /usr/bin/supervisord -c /etc/supervisor.d/supervisor.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
 
 # 13. Скопировать /etc/cron.d задачи для cron
-COPY ./cron/laravel /etc/cron.d/laravel
+# COPY ./cron/laravel /etc/cron.d/laravel
 
 # 14. Подготовить ведение логов для postfix
 
