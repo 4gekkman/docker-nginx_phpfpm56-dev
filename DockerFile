@@ -42,18 +42,22 @@ RUN apt-get update && apt-get -y upgrade
   # 6.1. Если нужен лог для postfix, раскомментируй и пересобери этот образ
   # - Внимание! Этот лог может стать огромным со временем, применяй лишь для отладки.
   # - Лог будет находиться в other/logs/mail.log
-  RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
+  #RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
 
   # 6.2. Установить пакеты
   RUN apt-get update && apt-get install -y --force-yes software-properties-common
   RUN apt-add-repository ppa:ondrej/php -y
-  RUN sudo apt-key update && apt-get update && apt-get install -y -f --force-yes \
+  RUN sudo apt-key update && apt-get update && apt-get install -y \
   
       curl \
       cron \
       supervisor \
       nginx \
-      php5.6 php5.6-fpm php5.6-gmp php5.6-mbstring php5.6-zip \
+      php5.6 \ 
+      php5.6-fpm \ 
+#      php5.6-gmp \
+#      php5.6-mbstring \
+#      php5.6-zip \
 #      git \
 #      php5.6-mysql \
 #      php5.6-curl \
@@ -109,11 +113,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin -
 
   # 13.1. Replace the system() source because inside Docker we can't access /proc/kmsg.
   #       https://groups.google.com/forum/#!topic/docker-user/446yoB0Vx6w
-  RUN sed -i -E 's/^(\s*)system\(\);/\1unix-stream("\/dev\/log");/' /etc/syslog-ng/syslog-ng.conf
+  #RUN sed -i -E 's/^(\s*)system\(\);/\1unix-stream("\/dev\/log");/' /etc/syslog-ng/syslog-ng.conf
   
   # 13.2. Uncomment 'SYSLOGNG_OPTS="--no-caps"' to avoid the following warning:
   #       syslog-ng: Error setting capabilities, capability management disabled; error='Operation not permitted'
   #       http://serverfault.com/questions/524518/error-setting-capabilities-capability-management-disabled#
-  RUN sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
+  #RUN sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
 
 
