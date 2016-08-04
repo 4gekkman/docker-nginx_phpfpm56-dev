@@ -19,7 +19,7 @@
 ##
 
 # 1. Базовый образ и разработчики
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER German Manvelov <4gekkman@gmail.com>
 
 # 2. Подавить сообщения error/warning от upstart
@@ -46,7 +46,7 @@ RUN apt-get update && apt-get -y upgrade
 
   # 6.2. Установить пакеты
   RUN apt-add-repository ppa:ondrej/php -y && apt-get update && apt-get install -y \
-
+  
       curl \
       cron \
       supervisor \
@@ -69,8 +69,8 @@ RUN apt-get update && apt-get -y upgrade
       git-all \
       mailutils \
       nano \
-      php5.6-bcmath \
-      ; exit 0
+      php5.6-bcmath
+      #; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
