@@ -47,7 +47,7 @@ RUN apt-get update && apt-get -y upgrade
   # 6.2. Установить пакеты
   RUN apt-get update && apt-get install -y --force-yes software-properties-common python-software-properties
   RUN apt-add-repository ppa:ondrej/php -y
-  RUN apt-get update && apt-get install -y -f --force-yes \
+  RUN sudo apt-key update && apt-get update && apt-get install -y -f --force-yes \
   
       curl \
       cron \
