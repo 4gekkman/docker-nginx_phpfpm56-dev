@@ -71,7 +71,7 @@ RUN apt-get update && apt-get -y upgrade
       git-all \
       mailutils \
       nano \
-      php5.6-bcmath
+      php5.6-bcmath \
       ; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
