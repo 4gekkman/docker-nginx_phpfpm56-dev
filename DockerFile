@@ -58,7 +58,7 @@ RUN apt-get update && apt-get -y upgrade
       php5.6-gd \
       php5.6-intl \
       php5.6-mcrypt \
-      php5.6-sqlite \
+      # php5.6-sqlite \
       php5.6-tidy \
       php5.6-xmlrpc \
       php5.6-xsl \
