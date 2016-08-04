@@ -19,7 +19,7 @@
 ##
 
 # 1. Базовый образ и разработчики
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER German Manvelov <4gekkman@gmail.com>
 
 # 2. Подавить сообщения error/warning от upstart
