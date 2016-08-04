@@ -19,7 +19,7 @@
 ##
 
 # 1. Базовый образ и разработчики
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER German Manvelov <4gekkman@gmail.com>
 
 # 2. Подавить сообщения error/warning от upstart
@@ -51,25 +51,25 @@ RUN apt-get update && apt-get -y upgrade
       cron \
       supervisor \
       nginx \
-      php7.0 php7.0-fpm php7.0-gmp php7.0-mbstring php7.0-zip \
+      php5 php5-fpm php5-gmp php5-mbstring php5-zip \
       git \
-      php7.0-mysql \
-      php7.0-curl \
-      php7.0-gd \
-      php7.0-intl \
-      php7.0-mcrypt \
-      php7.0-sqlite \
-      php7.0-tidy \
-      php7.0-xmlrpc \
-      php7.0-xsl \
-      php7.0-pgsql \
-      php7.0-ldap \
+      php5-mysql \
+      php5-curl \
+      php5-gd \
+      php5-intl \
+      php5-mcrypt \
+      php5-sqlite \
+      php5-tidy \
+      php5-xmlrpc \
+      php5-xsl \
+      php5-pgsql \
+      php5-ldap \
       pwgen \ 
       sshpass \ 
       git-all \
       mailutils \
       nano \
-      php7.0-bcmath \
+      php5-bcmath \
       ; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
@@ -80,7 +80,7 @@ RUN mkdir -p /var/run/php-fpm
 # 8. Удалить конфиги nginx и php
 # - А добавляться конфиги будет в compose-проекте
 RUN rm /etc/nginx/nginx.conf
-RUN rm /etc/php/7.0/fpm/php.ini
+RUN rm /etc/php5/fpm/php.ini
 
 # 9. Сделать expose портов 80 и 443
 EXPOSE 80
