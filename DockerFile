@@ -45,7 +45,7 @@ RUN apt-get update && apt-get -y upgrade
   # RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
 
   # 6.2. Установить пакеты
-  RUN apt-get update && apt-get install -y software-properties-common python-software-properties
+  RUN apt-get update && apt-get install -y --force-yes software-properties-common python-software-properties
   RUN apt-add-repository ppa:ondrej/php -y
   RUN apt-get update && apt-get install -y \
   
@@ -72,7 +72,7 @@ RUN apt-get update && apt-get -y upgrade
       mailutils \
       nano \
       php5.6-bcmath
-      #; exit 0
+      ; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
 RUN mkdir -p /etc/nginx
