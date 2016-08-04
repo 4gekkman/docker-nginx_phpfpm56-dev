@@ -47,6 +47,7 @@ RUN apt-get update && apt-get -y upgrade
   # 6.2. Установить пакеты
   RUN apt-get update && apt-get install -y --force-yes software-properties-common
   RUN apt-add-repository ppa:ondrej/php -y
+  RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4F4EA0AAE5267A6C
   RUN sudo apt-key update && apt-get update && apt-get install -y \
   
       curl \
