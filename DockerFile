@@ -79,8 +79,8 @@ RUN mkdir -p /var/run/php-fpm
 
 # 8. Удалить конфиги nginx и php
 # - А добавляться конфиги будет в compose-проекте
-RUN rm /etc/nginx/nginx.conf
-RUN rm /etc/php5/fpm/php.ini
+RUN -rm /etc/nginx/nginx.conf
+RUN -rm /etc/php5/fpm/php.ini
 
 # 9. Сделать expose портов 80 и 443
 EXPOSE 80
