@@ -19,7 +19,7 @@
 ##
 
 # 1. Базовый образ и разработчики
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER German Manvelov <4gekkman@gmail.com>
 
 # 2. Подавить сообщения error/warning от upstart
@@ -53,23 +53,23 @@ RUN apt-get update && apt-get -y upgrade
       nginx \
       php5 php5-fpm php5-gmp php5-mbstring php5-zip \
       git \
-      php5-mysql \
-      php5-curl \
-      php5-gd \
-      php5-intl \
-      php5-mcrypt \
-      php5-sqlite \
-      php5-tidy \
-      php5-xmlrpc \
-      php5-xsl \
-      php5-pgsql \
-      php5-ldap \
-      pwgen \ 
-      sshpass \ 
-      git-all \
-      mailutils \
-      nano \
-      php5-bcmath \
+#      php5-mysql \
+#      php5-curl \
+#      php5-gd \
+#      php5-intl \
+#      php5-mcrypt \
+#      php5-sqlite \
+#      php5-tidy \
+#      php5-xmlrpc \
+#      php5-xsl \
+#      php5-pgsql \
+#      php5-ldap \
+#      pwgen \ 
+#      sshpass \ 
+#      git-all \
+#      mailutils \
+#      nano \
+#      php5-bcmath \
       ; exit 0
     
 # 7. Создать следующие каталоги, если они отсутствуют
