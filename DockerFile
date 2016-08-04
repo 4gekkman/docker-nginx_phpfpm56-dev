@@ -42,7 +42,7 @@ RUN apt-get update && apt-get -y upgrade
   # 6.1. Если нужен лог для postfix, раскомментируй и пересобери этот образ
   # - Внимание! Этот лог может стать огромным со временем, применяй лишь для отладки.
   # - Лог будет находиться в other/logs/mail.log
-  # RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
+  RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
 
   # 6.2. Установить пакеты
   RUN apt-get update && apt-get install -y --force-yes software-properties-common
@@ -53,11 +53,7 @@ RUN apt-get update && apt-get -y upgrade
       cron \
       supervisor \
       nginx \
-      php5.6 \ 
-      php5.6-fpm \ 
-#      php5.6-gmp \ 
-#      php5.6-mbstring \
-#      php5.6-zip
+      php5.6 php5.6-fpm php5.6-gmp php5.6-mbstring php5.6-zip \
 #      git \
 #      php5.6-mysql \
 #      php5.6-curl \
