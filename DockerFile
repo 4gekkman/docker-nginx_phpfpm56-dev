@@ -50,68 +50,68 @@ RUN apt-get update && apt-get -y upgrade
       curl \
       cron \
       supervisor \
-      nginx \
-      php5.6 php5.6-fpm php5.6-gmp php5.6-mbstring php5.6-zip \
-      git \
-      php5.6-mysql \
-      php5.6-curl \
-      php5.6-gd \
-      php5.6-intl \
-      php5.6-mcrypt \
-      php5.6-sqlite \
-      php5.6-tidy \
-      php5.6-xmlrpc \
-      php5.6-xsl \
-      php5.6-pgsql \
-      php5.6-ldap \
-      pwgen \ 
-      sshpass \ 
-      git-all \
-      mailutils \
-      nano \
-      php5.6-bcmath \
-      ; exit 0
-    
-# 7. Создать следующие каталоги, если они отсутствуют
-RUN mkdir -p /etc/nginx
-RUN mkdir -p /var/log/supervisor
-RUN mkdir -p /var/run/php-fpm
-
-# 8. Удалить конфиги nginx и php
-# - А добавляться конфиги будет в compose-проекте
-RUN rm /etc/nginx/nginx.conf
-RUN rm /etc/php5/fpm/php.ini
-
-# 9. Сделать expose портов 80 и 443
-EXPOSE 80
-EXPOSE 443
-EXPOSE 25
-EXPOSE 587
-EXPOSE 465
-EXPOSE 993
-EXPOSE 143
-EXPOSE 110
-EXPOSE 995
-
-# 10. Добавить скрипт bootstrap.sh в образ
-# ADD bootstrap.sh /opt/bootstrap.sh
-# RUN chmod +x /opt/bootstrap.sh
-
-# 11. Назначить cmd по умолчанию
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.d/supervisor.ini"]
-
-# 12. Установить composer 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-
-# 13. Подготовить ведение логов для postfix
-
-  # 13.1. Replace the system() source because inside Docker we can't access /proc/kmsg.
-  #       https://groups.google.com/forum/#!topic/docker-user/446yoB0Vx6w
-  RUN	sed -i -E 's/^(\s*)system\(\);/\1unix-stream("\/dev\/log");/' /etc/syslog-ng/syslog-ng.conf
-  
-  # 13.2. Uncomment 'SYSLOGNG_OPTS="--no-caps"' to avoid the following warning:
-  #       syslog-ng: Error setting capabilities, capability management disabled; error='Operation not permitted'
-  #       http://serverfault.com/questions/524518/error-setting-capabilities-capability-management-disabled#
-  RUN	sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
+#      nginx \
+#      php5 php5-fpm php5-gmp php5-mbstring php5-zip \
+#      git \
+#      php5-mysql \
+#      php5-curl \
+#      php5-gd \
+#      php5-intl \
+#      php5-mcrypt \
+#      php5-sqlite \
+#      php5-tidy \
+#      php5-xmlrpc \
+#      php5-xsl \
+#      php5-pgsql \
+#      php5-ldap \
+#      pwgen \ 
+#      sshpass \ 
+#      git-all \
+#      mailutils \
+#      nano \
+#      php5-bcmath \
+#      ; exit 0
+#    
+## 7. Создать следующие каталоги, если они отсутствуют
+#RUN mkdir -p /etc/nginx
+#RUN mkdir -p /var/log/supervisor
+#RUN mkdir -p /var/run/php-fpm
+#
+## 8. Удалить конфиги nginx и php
+## - А добавляться конфиги будет в compose-проекте
+#RUN rm /etc/nginx/nginx.conf
+#RUN rm /etc/php5/fpm/php.ini
+#
+## 9. Сделать expose портов 80 и 443
+#EXPOSE 80
+#EXPOSE 443
+#EXPOSE 25
+#EXPOSE 587
+#EXPOSE 465
+#EXPOSE 993
+#EXPOSE 143
+#EXPOSE 110
+#EXPOSE 995
+#
+## 10. Добавить скрипт bootstrap.sh в образ
+## ADD bootstrap.sh /opt/bootstrap.sh
+## RUN chmod +x /opt/bootstrap.sh
+#
+## 11. Назначить cmd по умолчанию
+#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor.d/supervisor.ini"]
+#
+## 12. Установить composer 
+#RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+#
+## 13. Подготовить ведение логов для postfix
+#
+#  # 13.1. Replace the system() source because inside Docker we can't access /proc/kmsg.
+#  #       https://groups.google.com/forum/#!topic/docker-user/446yoB0Vx6w
+#  RUN	sed -i -E 's/^(\s*)system\(\);/\1unix-stream("\/dev\/log");/' /etc/syslog-ng/syslog-ng.conf
+#  
+#  # 13.2. Uncomment 'SYSLOGNG_OPTS="--no-caps"' to avoid the following warning:
+#  #       syslog-ng: Error setting capabilities, capability management disabled; error='Operation not permitted'
+#  #       http://serverfault.com/questions/524518/error-setting-capabilities-capability-management-disabled#
+#  RUN	sed -i 's/^#\(SYSLOGNG_OPTS="--no-caps"\)/\1/g' /etc/default/syslog-ng
 
 
