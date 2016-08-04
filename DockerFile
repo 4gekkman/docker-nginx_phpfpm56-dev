@@ -50,7 +50,7 @@ RUN apt-get update && apt-get -y upgrade
       curl \
       cron \
       supervisor \
-#      nginx \
+      nginx \
 #      php5 php5-fpm php5-gmp php5-mbstring php5-zip \
 #      git \
 #      php5-mysql \
