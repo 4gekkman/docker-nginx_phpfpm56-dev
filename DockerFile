@@ -45,7 +45,7 @@ RUN apt-get update && apt-get -y upgrade
   RUN apt-get update && apt-get install -y syslog-ng syslog-ng-core; exit 0
 
   # 6.2. Установить пакеты
-  RUN apt-add-repository ppa:ondrej/php -y
+  RUN apt-get update && apt-get install python-software-properties -y && apt-add-repository ppa:ondrej/php -y
   RUN apt-get update && apt-get install -y \
   
       curl \
