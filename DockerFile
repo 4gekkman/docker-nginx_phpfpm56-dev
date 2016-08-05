@@ -73,9 +73,9 @@ RUN apt-get update && apt-get -y upgrade
       php5.6-ldap \
       php5.6-bcmath \
       nano
-#      pwgen \ 
-#      sshpass \ 
-#      git-all \
+      pwgen \ 
+      sshpass \ 
+      git-all \
 #      mailutils
       #; exit 0
     
